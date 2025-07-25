@@ -14,4 +14,6 @@ CREATE TABLE Item(
 
 ALTER TABLE  person ADD COLUMN date_of_birth DATE;
 
-ALTER TABLE person ADD COLUMN created_at timestamp;
+ALTER TABLE person ADD COLUMN
+
+ALTER TABLE person ADD COLUMN mood int; -- Потому что был выбран Ordinal

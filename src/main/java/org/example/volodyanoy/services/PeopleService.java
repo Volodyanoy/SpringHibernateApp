@@ -1,5 +1,6 @@
 package org.example.volodyanoy.services;
 
+import org.example.volodyanoy.models.Mood;
 import org.example.volodyanoy.models.Person;
 import org.example.volodyanoy.repositories.PeopleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,7 @@ public class PeopleService {
 
     @Transactional
     public void save(Person person){
+        person.setMood(Mood.CALM); // index CALM = 4
         person.setCreatedAt(new Date());
         peopleRepository.save(person);
     }

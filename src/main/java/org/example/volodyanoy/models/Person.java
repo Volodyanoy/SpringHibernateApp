@@ -39,6 +39,9 @@ public class Person {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
+    @Enumerated(EnumType.STRING)
+    private Mood mood;
+
     @OneToMany(mappedBy = "owner")
     private List<Item> items;
 
@@ -75,6 +78,14 @@ public class Person {
 
     public Date getCreatedAt() {
         return createdAt;
+    }
+
+    public Mood getMood() {
+        return mood;
+    }
+
+    public void setMood(Mood mood) {
+        this.mood = mood;
     }
 
     public void setCreatedAt(Date createdAt) {
