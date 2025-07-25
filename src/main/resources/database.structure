@@ -11,3 +11,7 @@ CREATE TABLE Item(
     person_id int REFERENCES person(id) ON DELETE SET NULL ,
     item_name varchar(100) NOT NULL
 )
+
+ALTER TABLE  person ADD COLUMN date_of_birth DATE;
+
+ALTER TABLE person ADD COLUMN created_at timestamp;
