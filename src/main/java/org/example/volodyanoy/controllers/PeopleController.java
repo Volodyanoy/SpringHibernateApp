@@ -1,6 +1,7 @@
 package org.example.volodyanoy.controllers;
 
 import org.example.volodyanoy.models.Person;
+import org.example.volodyanoy.services.ItemService;
 import org.example.volodyanoy.services.PeopleService;
 import org.example.volodyanoy.util.PersonValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,17 +19,24 @@ public class PeopleController {
 
     private final PeopleService peopleService;
     private final PersonValidator personValidator;
+    private final ItemService itemService;
 
     @Autowired
-    public PeopleController(PeopleService peopleService, PersonValidator personValidator) {
+    public PeopleController(PeopleService peopleService, PersonValidator personValidator, ItemService itemService) {
         this.peopleService = peopleService;
         this.personValidator = personValidator;
+        this.itemService = itemService;
     }
 
     @GetMapping()
     public String index(Model model){
         //Получим всех людей из DAO и передадим в views
         model.addAttribute("people", peopleService.findAll());
+
+        itemService.findByItemName("Airpods");
+        itemService.findByOwner(peopleService.findAll().get(0));
+        peopleService.test();
+
         return "people/index";
     }
 
