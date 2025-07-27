@@ -1,5 +1,6 @@
 package org.example.volodyanoy.controllers;
 
+import org.example.volodyanoy.dao.PersonDAO;
 import org.example.volodyanoy.models.Person;
 import org.example.volodyanoy.services.ItemService;
 import org.example.volodyanoy.services.PeopleService;
@@ -20,18 +21,21 @@ public class PeopleController {
     private final PeopleService peopleService;
     private final PersonValidator personValidator;
     private final ItemService itemService;
+    private final PersonDAO personDAO;
 
     @Autowired
-    public PeopleController(PeopleService peopleService, PersonValidator personValidator, ItemService itemService) {
+    public PeopleController(PeopleService peopleService, PersonValidator personValidator, ItemService itemService, PersonDAO personDAO) {
         this.peopleService = peopleService;
         this.personValidator = personValidator;
         this.itemService = itemService;
+        this.personDAO = personDAO;
     }
 
     @GetMapping()
     public String index(Model model){
         //Получим всех людей из DAO и передадим в views
         model.addAttribute("people", peopleService.findAll());
+        personDAO.testNPlus1();
 
         return "people/index";
     }

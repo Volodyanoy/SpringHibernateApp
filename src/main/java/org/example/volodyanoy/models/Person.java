@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 
 @Entity
@@ -72,6 +73,14 @@ public class Person {
         return dateOfBirth;
     }
 
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
+
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
@@ -116,5 +125,17 @@ public class Person {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return id == person.id && age == person.age && Objects.equals(name, person.name) && Objects.equals(email, person.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, age, email);
     }
 }
